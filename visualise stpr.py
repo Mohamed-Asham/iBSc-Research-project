@@ -13,7 +13,7 @@ matplotlib.set_loglevel("warning")
 
 logging.basicConfig(level=logging.DEBUG, format="%(levelname)s - %(message)s")
 
-# output_dir = r"C:\Users\mamoh\PycharmProjects\GitHub\iBSc-Research-project\Mohamed Asham - Code\Output folder for stpr"
+output_dir = r"---"   # <-- Place path to output folder here
 
 stpr_at_lag_0_dict = {}
 stpr_data_dict = {}
@@ -34,16 +34,15 @@ def plot_stpr_for_one_vs_population(stpr_data_dict):
         plt.xlabel("Time Lag (s)")
         plt.ylabel("Correlation (STPR)")
         plt.title(f"STPR for Neuron {neuron_id} {single_neuron_area} vs {population_area} Population "
-                  f"(Bin Width: {bin_width}s) Animal: {animal_id}_{extracted_date}_{movement_type}_{stimulus_type}")
+                  f"(Animal: {animal_id}_{extracted_date}_{movement_type}_{stimulus_type}")
 
         stats_text = f"Mean: {mean_stpr:.3f}\nSD: {std_stpr:.3f}"
         plt.text(0.02, 0.9, stats_text, transform=plt.gca().transAxes, fontsize=8,
                  bbox=dict(facecolor='white', alpha=0.5, edgecolor='black'))
 
-        # output_file = os.path.join(output_dir, f"_{animal_id}_STPR_oneVSpopulation_{bin_width}s_{movement_type}.png")
-        # plt.savefig(output_file, bbox_inches="tight", dpi=600)
-        # plt.close()
-        plt.show()
+        output_file = os.path.join(output_dir, f"_{animal_id}_STPR_oneVSpopulation_{movement_type}.png")
+        plt.savefig(output_file, bbox_inches="tight", dpi=600)
+        plt.close()
 
 
 def plot_stpr_overlayed(stpr_data_dict):
@@ -82,11 +81,10 @@ def plot_stpr_overlayed(stpr_data_dict):
                 plt.title(
                     f"STPR Curves for {comparison} in Animal {animal_id}_{extracted_date} ({movement_type}, {stimulus_type})")
                 plt.grid(axis="y", linestyle="--", alpha=0.7)
-                plt.show()
                 
-                # output_file = os.path.join(output_dir,f"_{animal_id}_STPR_overlayed_{bin_width}s_{movement_type}.png")
-                # plt.savefig(output_file, bbox_inches="tight", dpi=600)
-                # plt.close()
+                output_file = os.path.join(output_dir,f"_{animal_id}_STPR_overlayed_{movement_type}.png")
+                plt.savefig(output_file, bbox_inches="tight", dpi=600)
+                plt.close()
 
 
 def plot_scatter_and_boxplot_stpr_for_mean_of_all_comparisonTypes(stpr_data_dict):
